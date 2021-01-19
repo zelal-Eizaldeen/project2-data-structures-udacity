@@ -41,7 +41,6 @@ sub_child.add_user(sub_child_user)
 
 child.add_group(sub_child)
 parent.add_group(child)
-Write a function that provides an efficient look up of whether the user is in a group.
 
 def is_user_in_group(user, group):
     """
@@ -58,14 +57,56 @@ def is_user_in_group(user, group):
     if(user in group.users):
         exist = True
         return(exist)  
-    
-        
+           
     else:
         for g in cur_group:
             if g.name in visited_groups:
                 continue
             else:
                 visited_groups[g.name] = g
-                print(visited_groups,'here')
                 is_user_in_group(user,g)
     return exist
+parent = Group("parent")
+
+child1 = Group("child1")
+
+child2 = Group("child2")
+
+child3 = Group("child3")
+
+child4 = Group("child4")
+
+subchild = Group("subchild")
+
+subchild1 = Group("subchild1")
+
+child1.add_user("jerome")
+
+child2.add_user("sylvie")
+
+child3.add_user("gregory")
+
+child4.add_user("nicu")
+
+subchild.add_user("sub_child_user")
+
+subchild1.add_user("victoria")
+
+child1.add_group(subchild)
+
+child2.add_group(subchild1)
+
+parent.add_group(child1)
+
+parent.add_group(child2)
+
+parent.add_group(child3)
+
+parent.add_group(child4)
+
+print ("Pass" if  (is_user_in_group(subchild, child1)) else "Fail")
+print ("Pass" if  (is_user_in_group(child1, parent)) else "Fail")
+print ("Pass" if  (is_user_in_group("jerome", child1)) else "Fail")
+print ("Pass" if  (is_user_in_group("", child4)) else "Fail")
+print ("Pass" if not (is_user_in_group(child4, parent)) else "Fail")
+

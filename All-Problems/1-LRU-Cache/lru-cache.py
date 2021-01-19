@@ -1,4 +1,6 @@
 
+from collections import OrderedDict 
+
 class LinkedListNode:  
     def __init__(self, key, value):
         self.key = key
@@ -20,6 +22,7 @@ class LRU_Cache(object):
         new_node = LinkedListNode(key, value)                       
         head = self.bucket_array[bucket_index]  
         if key > len(self.bucket_array):
+            
             self.delete(key) 
             
         while head is not None:
@@ -32,7 +35,7 @@ class LRU_Cache(object):
         self.bucket_array[bucket_index] = new_node                 
         self.num_entries += 1
         
-
+    
     def get(self, key):
         # In case of a cache hit
         bucket_index = self.get_bucket_index(key) 

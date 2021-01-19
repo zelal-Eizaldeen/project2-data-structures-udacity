@@ -25,3 +25,4 @@ print(f"PATH ONE: {find_files(suffix='c', path=path_base)}")
 path2 = os.getcwd() + '/testdir/subdir1'
 print(f"PATH TWO: {find_files(suffix='c', path=path2)}")
 
+
