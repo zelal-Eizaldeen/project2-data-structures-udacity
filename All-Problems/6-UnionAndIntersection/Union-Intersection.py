@@ -59,7 +59,6 @@ def intersection(llist_1, llist_2):
     if llist_1 is None or llist_2 is None:
         return None 
     instersection_set = llist_1.to_set().intersection(llist_2.to_set())
-    print(f"hiiiiii {llist_1}")
     llist = LinkedList()
     for value in instersection_set:
         llist.append(value)

@@ -17,14 +17,14 @@ class BlockChain(object):
     def __init__(self):
         self.head = None
         self.tail = None
-    def appendBlock(self, data):
+    def append_block(self, data):
         if data is None or data == "":
             return
         elif self.head is None:
             self.head = Block(datetime.datetime.utcnow(), data, 0)
             self.tail = self.head
         else:
-            self.tail.next = Block(datetime.datetime.utcnow(), data, self.tail.hash)
+            self.tail.next = Block(datetime.datetime.utcnow(), data, self.tail.previous_hash + 1)
             self.tail = self.tail.next
         return
     def toList(self):
@@ -40,19 +40,19 @@ def main():
     data1 = "First Blockchain block"
     data2 = "Second Blockchain block"
     data3 = "Third Blockchain block"
-    bl.appendBlock(data1)
-    bl.appendBlock(data2)
-    bl.appendBlock(data3)
+    bl.append_block(data1)
+    bl.append_block(data2)
+    bl.append_block(data3)
     print(bl.toList()) # prints block chain
     # Test Case 2
     bl1 = BlockChain()
-    bl1.appendBlock("")
-    bl1.appendBlock("")
+    bl1.append_block("")
+    bl1.append_block("")
     print(bl1.toList())  # prints empty block chain as there was no data passed
     #Test Case 3
     bl2 = BlockChain()
-    bl2.appendBlock(None)
-    bl2.appendBlock(None)
+    bl2.append_block(None)
+    bl2.append_block(None)
     print(bl2.toList())  # prints empty block chain as there was no data passed
 if __name__ == "__main__":
     main()
